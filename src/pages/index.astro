@@ -111,39 +111,15 @@ const recentArticles = articles.slice(0, 3);
   }
 
   .home-body {
-    position: relative;
-    isolation: isolate;
     padding-block: clamp(4rem, 9vw, 7rem) 0;
     background-color: var(--color-bg);
-  }
-
-  .home-body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
     background-image:
-      linear-gradient(rgb(18 18 18 / 0.7), rgb(18 18 18 / 0.92)),
+      linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
       url('../../images/decorative/backgrounds/desktop_wallpaper.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    filter: blur(48px) saturate(0.9);
-    transform: scale(1.08);
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      #000 6rem,
-      #000 calc(100% - 6rem),
-      transparent
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      #000 6rem,
-      #000 calc(100% - 6rem),
-      transparent
-    );
+    background-attachment: fixed;
   }
 
   .home-body__layout {
@@ -167,6 +143,8 @@ const recentArticles = articles.slice(0, 3);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background-color: rgb(18 18 18 / 0.82);
+    -webkit-backdrop-filter: blur(18px) saturate(1.05);
+    backdrop-filter: blur(18px) saturate(1.05);
   }
 
   .home-body__main {
@@ -174,6 +152,8 @@ const recentArticles = articles.slice(0, 3);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background-color: rgb(18 18 18 / 0.82);
+    -webkit-backdrop-filter: blur(18px) saturate(1.05);
+    backdrop-filter: blur(18px) saturate(1.05);
   }
 
   .home-articles {
@@ -226,10 +206,11 @@ const recentArticles = articles.slice(0, 3);
   }
 
   @media (max-width: 56rem) and (orientation: portrait) {
-    .home-body::before {
+    .home-body {
       background-image:
-        linear-gradient(rgb(18 18 18 / 0.7), rgb(18 18 18 / 0.92)),
+        linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
         url('../../images/decorative/backgrounds/mobile_wallpaper.jpg');
+      background-attachment: scroll;
     }
   }
 </style>
