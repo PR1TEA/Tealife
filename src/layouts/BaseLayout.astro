@@ -35,7 +35,7 @@ const pageTitle = title ? `${title} — ${SITE.name}` : SITE.name;
     {description && <meta name="description" content={description} />}
     {noindex && <meta name="robots" content="noindex" />}
   </head>
-  <body>
+  <body class:list={[{ 'home-background': headerOverlay }]}>
     <a class="skip-link" href="#main-content">
       跳至主要內容
     </a>

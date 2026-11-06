@@ -204,6 +204,32 @@ h4 {
   inset-block-start: var(--space-4);
 }
 
+/* 首頁：把主頁的壁紙與遮罩延伸到頁腳區，讓頁腳毛玻璃有背景可模糊 */
+.home-background {
+  background-image:
+    linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
+    url('../../images/decorative/backgrounds/desktop_wallpaper.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.home-background .site-footer {
+  background-color: rgb(18 18 18 / 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(1.05);
+  backdrop-filter: blur(18px) saturate(1.05);
+}
+
+@media (max-width: 56rem) and (orientation: portrait) {
+  .home-background {
+    background-image:
+      linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
+      url('../../images/decorative/backgrounds/mobile_wallpaper.jpg');
+    background-attachment: scroll;
+  }
+}
+
 /* 浮在深色背景上的頁首，focus 外框改用白色 */
 .site-header--overlay :focus-visible {
   outline-color: #fff;
