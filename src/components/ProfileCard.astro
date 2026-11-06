@@ -1,0 +1,92 @@
+---
+import { PROFILE } from '../config/profile';
+
+const name = PROFILE.name.trim();
+const displayName = name || '名稱待填寫';
+const hasAvatar = Boolean(PROFILE.avatar);
+const hasBio = Boolean(PROFILE.bio?.trim());
+const links = PROFILE.links ?? [];
+
+function isExternal(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+---
+
+<section class="profile" aria-labelledby="profile-name">
+  {hasAvatar && (
+    <img
+      class="profile__avatar"
+      src={PROFILE.avatar}
+      alt={name}
+      width="72"
+      height="72"
+      loading="eager"
+      decoding="async"
+    />
+  )}
+
+  <div class="profile__body">
+    <h2 id="profile-name" class:list={['profile__name', { 'profile__name--empty': !name }]}>
+      {displayName}
+    </h2>
+
+    {hasBio && <p class="profile__bio">{PROFILE.bio}</p>}
+
+    {links.length > 0 && (
+      <ul class="profile__links">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target={isExternal(link.href) ? '_blank' : undefined}
+              rel={isExternal(link.href) ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>
+
+<style>
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .profile__avatar {
+    flex: none;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+
+  .profile__name {
+    font-size: var(--text-lg);
+  }
+
+  .profile__name--empty {
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .profile__bio {
+    margin-block-start: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .profile__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    margin-block-start: var(--space-3);
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+  }
+</style>

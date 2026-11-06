@@ -1,6 +1,6 @@
 # tealife
 
-以 Astro 建立的個人網站。目前完成第一階段：專案骨架、版面、導覽、字體與全域樣式。
+以 Astro 建立的個人網站。目前完成第二階段：專案骨架、全域樣式、個人名片與首頁。
 
 ## 指令
 
@@ -22,14 +22,19 @@ pnpm format
 
 ```text
 src/
-├── components/        SiteHeader、SiteFooter、ThemeToggle
-├── config/            site.ts（站名、語系，以及預留的網域與開始日期）
+├── components/        SiteHeader、SiteFooter、ThemeToggle、ProfileCard
+├── config/            site.ts（站名、語系、導覽）、profile.ts（個人名片）
 ├── content/
 │   └── photography/   相簿專用資料夾（第四階段填入相簿資料與照片）
 ├── layouts/           BaseLayout
 ├── pages/             /、/photography/、/moments/、/articles/
 └── styles/            global.css（設計變數、重置、容器）
 ```
+
+## 個人名片
+
+資料在 `src/config/profile.ts`。只填你願意公開的內容；沒有填的欄位不會顯示。
+頭像放在 `public/`（例如 `/avatar.jpg`）後，把路徑填入 `avatar` 即可。
 
 ## 設計
 
@@ -40,4 +45,4 @@ src/
 
 ## 尚未實作
 
-個人名片、文章、動態、攝影、日曆、友情連結。依階段逐步加入。
+文章、動態、攝影、日曆、友情連結。依階段逐步加入。
