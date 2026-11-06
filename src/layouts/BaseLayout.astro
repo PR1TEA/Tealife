@@ -34,21 +34,6 @@ const pageTitle = title ? `${title} — ${SITE.name}` : SITE.name;
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
     {noindex && <meta name="robots" content="noindex" />}
-    <script is:inline>
-      // 在首次繪製前決定主題，避免深色模式閃爍。
-      (() => {
-        let stored = null;
-        try {
-          stored = localStorage.getItem('theme');
-        } catch {
-          /* 無法存取時改用系統偏好 */
-        }
-
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.dataset.theme =
-          stored === 'dark' || stored === 'light' ? stored : prefersDark ? 'dark' : 'light';
-      })();
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">

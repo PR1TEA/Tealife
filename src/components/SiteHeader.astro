@@ -1,7 +1,6 @@
 ---
 import favicon from '../../images/decorative/icons/favicon.svg?url';
 import { SECTIONS, SITE } from '../config/site';
-import ThemeToggle from './ThemeToggle.astro';
 
 const pathname = Astro.url.pathname;
 
@@ -35,8 +34,6 @@ function isActive(href: string): boolean {
         ))}
       </ul>
     </nav>
-
-    <ThemeToggle inverse={overlay} />
   </div>
 </header>
 

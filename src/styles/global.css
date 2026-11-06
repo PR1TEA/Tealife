@@ -5,7 +5,7 @@
 
 /* 1. 設計變數 -------------------------------------------------------------- */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   /* 字體 */
   --font-sans:
@@ -56,28 +56,15 @@
   --duration: 150ms;
   --ease: ease;
 
-  /* 色彩（淺色） */
-  --color-bg: #fbfbfa;
-  --color-surface: #ffffff;
-  --color-text: #1b1b19;
-  --color-text-muted: #6d6c66;
-  --color-border: #e6e4df;
-  --color-border-strong: #c9c6bf;
-  --color-focus: #1b1b19;
-  --color-selection: #e8e5df;
-}
-
-:root[data-theme='dark'] {
-  color-scheme: dark;
-
-  --color-bg: #0e0e0d;
-  --color-surface: #171716;
-  --color-text: #e9e8e4;
-  --color-text-muted: #9d9c96;
-  --color-border: #2a2a27;
-  --color-border-strong: #45453f;
-  --color-focus: #e9e8e4;
-  --color-selection: #33322e;
+  /* 色彩（深色） */
+  --color-bg: #121212;
+  --color-surface: #1a1a1a;
+  --color-text: #ececec;
+  --color-text-muted: #a3a3a3;
+  --color-border: #2c2c2c;
+  --color-border-strong: #4a4a4a;
+  --color-focus: #ececec;
+  --color-selection: #333333;
 }
 
 /* 2. 基礎重置 -------------------------------------------------------------- */
@@ -217,27 +204,9 @@ h4 {
   inset-block-start: var(--space-4);
 }
 
-/* 主題切換圖示：依 data-theme 顯示太陽或月亮 */
-.theme-toggle .icon--sun {
-  display: none;
-}
-
-:root[data-theme='dark'] .theme-toggle .icon--sun {
-  display: block;
-}
-
-:root[data-theme='dark'] .theme-toggle .icon--moon {
-  display: none;
-}
-
 /* 浮在深色背景上的頁首，focus 外框改用白色 */
 .site-header--overlay :focus-visible {
   outline-color: #fff;
-}
-
-/* 白色圖示在淺色頁首上轉為深色，深色主題與滿版頁首維持白色 */
-:root:not([data-theme='dark']) .site-header:not(.site-header--overlay) .brand__icon {
-  filter: invert(1);
 }
 
 @media (prefers-reduced-motion: reduce) {

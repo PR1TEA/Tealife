@@ -127,7 +127,7 @@ const recentArticles = articles.slice(0, 3);
     inset-block-start: var(--space-6);
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-6);
   }
 
   .home-profile {
@@ -137,8 +137,15 @@ const recentArticles = articles.slice(0, 3);
     background-color: var(--color-surface);
   }
 
+  .home-body__main {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
   .home-articles {
-    padding-block: 0 var(--space-8);
+    padding-block: 0;
   }
 
   .home-articles__title {
@@ -183,7 +190,6 @@ const recentArticles = articles.slice(0, 3);
 
     .home-sidebar {
       position: static;
-      max-width: 22rem;
     }
   }
 </style>

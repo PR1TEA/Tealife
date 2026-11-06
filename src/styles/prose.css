@@ -102,25 +102,17 @@
   font-size: inherit;
 }
 
-/* Shiki 雙主題 */
+/* Shiki 深色語法 */
 .prose .astro-code,
 .prose .astro-code span {
-  color: var(--shiki-light);
-  font-style: var(--shiki-light-font-style);
-  font-weight: var(--shiki-light-font-weight);
-  text-decoration: var(--shiki-light-text-decoration);
-}
-
-.prose .astro-code {
-  background-color: var(--color-surface);
-}
-
-:root[data-theme='dark'] .prose .astro-code,
-:root[data-theme='dark'] .prose .astro-code span {
   color: var(--shiki-dark);
   font-style: var(--shiki-dark-font-style);
   font-weight: var(--shiki-dark-font-weight);
   text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.prose .astro-code {
+  background-color: var(--color-surface);
 }
 
 .prose img {
