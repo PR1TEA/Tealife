@@ -5,7 +5,7 @@
 
 /* 1. 設計變數 -------------------------------------------------------------- */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* 字體 */
   --font-sans:
@@ -56,15 +56,15 @@
   --duration: 150ms;
   --ease: ease;
 
-  /* 色彩（深灰） */
-  --color-bg: #121212;
-  --color-surface: #1a1a1a;
-  --color-text: #f5f5f5;
-  --color-text-muted: #a3a3a3;
-  --color-border: #222222;
-  --color-border-strong: #3a3a3a;
-  --color-focus: #ffffff;
-  --color-selection: #2a2a2a;
+  /* 色彩（淺灰） */
+  --color-bg: #e7e7e7;
+  --color-surface: #f3f3f3;
+  --color-text: #1b1b1b;
+  --color-text-muted: #5c5c5c;
+  --color-border: #cfcfcf;
+  --color-border-strong: #a8a8a8;
+  --color-focus: #1b1b1b;
+  --color-selection: #d5d5d5;
 }
 
 /* 2. 基礎重置 -------------------------------------------------------------- */
@@ -207,7 +207,7 @@ h4 {
 /* 首頁：把主頁的壁紙與遮罩延伸到頁腳區，讓頁腳毛玻璃有背景可模糊 */
 .home-background {
   background-image:
-    linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
+    linear-gradient(rgb(231 231 231 / 0.6), rgb(231 231 231 / 0.6)),
     url('../../images/decorative/backgrounds/desktop_wallpaper.jpg');
   background-position: center;
   background-size: cover;
@@ -216,7 +216,7 @@ h4 {
 }
 
 .home-background .site-footer {
-  background-color: rgb(18 18 18 / 0.82);
+  background-color: rgb(243 243 243 / 0.82);
   -webkit-backdrop-filter: blur(18px) saturate(1.05);
   backdrop-filter: blur(18px) saturate(1.05);
 }
@@ -224,7 +224,7 @@ h4 {
 @media (max-width: 56rem) and (orientation: portrait) {
   .home-background {
     background-image:
-      linear-gradient(rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.8)),
+      linear-gradient(rgb(231 231 231 / 0.6), rgb(231 231 231 / 0.6)),
       url('../../images/decorative/backgrounds/mobile_wallpaper.jpg');
     background-attachment: scroll;
   }
@@ -232,7 +232,7 @@ h4 {
 
 /* 浮在深色背景上的頁首，focus 外框改用白色 */
 .site-header--overlay :focus-visible {
-  outline-color: #fff;
+  outline-color: var(--color-focus);
 }
 
 @media (prefers-reduced-motion: reduce) {

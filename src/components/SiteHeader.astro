@@ -47,20 +47,20 @@ function isActive(href: string): boolean {
     inset-block-start: 0;
     inset-inline: 0;
     z-index: 20;
-    border-block-end-color: rgb(255 255 255 / 0.18);
+    border-block-end-color: var(--color-border);
   }
 
   .site-header--overlay .brand {
-    color: #fff;
+    color: var(--color-text);
   }
 
   .site-header--overlay .nav a {
-    color: #fff;
+    color: var(--color-text);
   }
 
   .site-header--overlay .nav a:hover,
   .site-header--overlay .nav a[aria-current='page'] {
-    color: #fff;
+    color: var(--color-text);
   }
 
   .site-header__inner {
@@ -85,6 +85,7 @@ function isActive(href: string): boolean {
     flex: none;
     width: 1.5rem;
     height: 1.5rem;
+    filter: invert(1);
   }
 
   .nav ul {
