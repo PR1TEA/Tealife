@@ -92,7 +92,9 @@ const photos = Object.entries(modules)
     transition: transform var(--duration) var(--ease);
   }
 
-  .tile:hover :global(img) {
-    transform: scale(1.03);
+  @media (hover: hover) {
+    .tile:hover :global(img) {
+      transform: scale(1.03);
+    }
   }
 </style>

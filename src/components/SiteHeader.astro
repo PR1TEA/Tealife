@@ -88,6 +88,7 @@ function isActive(href: string): boolean {
   }
 
   .nav a {
+    display: inline-block;
     color: var(--color-text-muted);
     font-size: var(--text-sm);
     text-decoration: none;
@@ -119,7 +120,12 @@ function isActive(href: string): boolean {
     }
 
     .nav ul {
-      gap: var(--space-4);
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+
+    .nav a {
+      padding-block: var(--space-2);
     }
   }
 </style>

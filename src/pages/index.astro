@@ -14,7 +14,7 @@ const recentArticles = articles.slice(0, 3);
 <BaseLayout headerOverlay>
   <section class="hero">
     <h1 class="hero__title" lang="ru">
-      Даже в тяжести самых крутых перемен
+      Даже в тяжести самых крутых перемен...
     </h1>
     <span class="hero__scroll" aria-hidden="true">
       ↓
@@ -67,6 +67,12 @@ const recentArticles = articles.slice(0, 3);
     background-attachment: fixed;
     color: #fff;
     text-align: center;
+  }
+
+  @media (max-width: 48rem), (max-width: 56rem) and (orientation: portrait) {
+    .hero {
+      background-image: url('../../images/decorative/backgrounds/mobile_wallpaper.jpg');
+    }
   }
 
   /* 暗色遮罩，確保壁紙上的文字可讀 */
@@ -167,7 +173,7 @@ const recentArticles = articles.slice(0, 3);
 
     .home-profile {
       position: static;
-      max-width: 18rem;
+      max-width: 22rem;
     }
   }
 </style>
