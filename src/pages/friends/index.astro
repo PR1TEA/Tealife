@@ -1,0 +1,111 @@
+---
+import { friendsConfig } from '../../config/friendsconfig';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const friends = friendsConfig
+  .filter((friend) => friend.enabled !== false)
+  .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
+---
+
+<BaseLayout title="Friends">
+  <div class="page">
+    <div class="container container--narrow">
+      <h1 class="page-title">Friends</h1>
+
+      {friends.length > 0 ? (
+        <ul class="friends-grid">
+          {friends.map((friend) => (
+            <li>
+              <a
+                class="friend-card"
+                href={friend.siteurl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  class="friend-card__avatar"
+                  src={friend.imgurl}
+                  alt={`${friend.title} 的頭像`}
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+                <span class="friend-card__body">
+                  <span class="friend-card__name">{friend.title}</span>
+                  <span class="friend-card__desc">{friend.desc}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="friends-empty">目前還沒有友鏈。</p>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+    margin-block-start: var(--space-6);
+    padding: 0;
+    list-style: none;
+  }
+
+  .friend-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    height: 100%;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      border-color var(--duration) var(--ease),
+      background-color var(--duration) var(--ease);
+  }
+
+  .friend-card:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .friend-card__avatar {
+    flex: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .friend-card__body {
+    min-width: 0;
+  }
+
+  .friend-card__name {
+    display: block;
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+
+  .friend-card__desc {
+    display: block;
+    margin-block-start: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+
+  .friends-empty {
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+  }
+</style>

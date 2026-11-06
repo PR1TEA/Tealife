@@ -13,9 +13,10 @@ export const SITE = {
   startDate: '',
 } as const;
 
-/** 三個主要內容模組；導覽與首頁入口共用同一份定義。 */
+/** 四個主要內容模組；導覽與首頁入口共用同一份定義。 */
 export const SECTIONS = [
   { label: 'Photography', href: '/photography/' },
   { label: 'Moments', href: '/moments/' },
   { label: 'Articles', href: '/articles/' },
+  { label: 'Friends', href: '/friends/' },
 ] as const;
