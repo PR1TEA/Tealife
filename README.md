@@ -22,8 +22,7 @@ pnpm format
 
 ```text
 images/                  專案根目錄的圖片
-├── album/               相簿
-├── article/             文章
+├── photography/         攝影
 └── decorative/          裝飾元素
     ├── icons/
     ├── avatars/
