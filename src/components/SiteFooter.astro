@@ -1,14 +1,7 @@
----
-import { SITE } from '../config/site';
-
-const year = new Date().getFullYear();
----
-
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p>
-      © {year} {SITE.name}
-    </p>
+    <p>🄯 2026 PR1TEA · Tealife</p>
+    <p class="site-footer__meta">Built with Astro · Deployed on Cloudflare</p>
   </div>
 </footer>
 
@@ -19,5 +12,9 @@ const year = new Date().getFullYear();
     border-block-start: 1px solid var(--color-border);
     color: var(--color-text-muted);
     font-size: var(--text-sm);
+  }
+
+  .site-footer__meta {
+    margin-block-start: 0.25rem;
   }
 </style>
