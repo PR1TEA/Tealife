@@ -49,20 +49,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: var(--space-5);
     overflow: hidden;
     background-color: #000;
-    background-image: var(--home-wallpaper);
+    background-image: url('../../images/decorative/backgrounds/desktop_wallpaper.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     text-align: center;
   }
 
-  /* 之後換上壁紙時，用一層暗色遮罩確保文字可讀 */
+  /* 暗色遮罩，確保壁紙上的文字可讀 */
   .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgb(0 0 0 / 0.35);
+    background-color: rgb(0 0 0 / 0.55);
   }
 
   .hero__title {
@@ -72,6 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
+    text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
   }
 
   .hero__scroll {
