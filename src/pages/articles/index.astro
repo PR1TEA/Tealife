@@ -1,11 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
+import ArticleList from '../../components/ArticleList.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <BaseLayout title="Articles">
   <div class="page">
-    <div class="container">
+    <div class="container container--narrow">
       <h1 class="page-title">Articles</h1>
+      <ArticleList articles={articles} />
     </div>
   </div>
 </BaseLayout>

@@ -1,11 +1,82 @@
 ---
+import { getCollection, render } from 'astro:content';
+import '../../styles/prose.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../utils/date';
+
+const moments = (await getCollection('moments')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const entries = await Promise.all(
+  moments.map(async (moment) => ({
+    moment,
+    Content: (await render(moment)).Content,
+  })),
+);
 ---
 
 <BaseLayout title="Moments">
   <div class="page">
-    <div class="container">
+    <div class="container container--narrow">
       <h1 class="page-title">Moments</h1>
+
+      {entries.length > 0 ? (
+        <ol class="timeline">
+          {entries.map(({ moment, Content }) => (
+            <li class="timeline__item">
+              <time class="timeline__date" datetime={moment.data.pubDate.toISOString()}>
+                {formatDate(moment.data.pubDate)}
+              </time>
+              <div class="timeline__content prose">
+                <Content />
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="timeline__empty">尚無動態。</p>
+      )}
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .timeline {
+    margin: var(--space-6) 0 0;
+    padding: 0 0 0 var(--space-5);
+    border-inline-start: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .timeline__item {
+    position: relative;
+    padding-block: var(--space-4);
+  }
+
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 1.35rem;
+    inset-inline-start: calc(-1 * var(--space-5) - 3.5px);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-text);
+  }
+
+  .timeline__date {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .timeline__content {
+    margin-block-start: var(--space-2);
+  }
+
+  .timeline__empty {
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../utils/date';
+
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+}
+
+const { articles } = Astro.props;
+---
+
+{articles.length > 0 ? (
+  <ul class="article-list">
+    {articles.map((article) => (
+      <li>
+        <a class="article-list__link" href={`/articles/${article.id}/`}>
+          <span class="article-list__meta">
+            <time datetime={article.data.pubDate.toISOString()}>
+              {formatDate(article.data.pubDate)}
+            </time>
+            <span>{article.data.category}</span>
+          </span>
+          <span class="article-list__title">{article.data.title}</span>
+          <span class="article-list__desc">{article.data.description}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p class="article-list__empty">尚無文章。</p>
+)}
+
+<style>
+  .article-list {
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .article-list li {
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .article-list__link {
+    display: block;
+    padding-block: var(--space-5);
+    text-decoration: none;
+  }
+
+  .article-list__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .article-list__title {
+    display: block;
+    margin-block-start: var(--space-2);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .article-list__desc {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-block-start: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .article-list__link:hover .article-list__title {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .article-list__empty {
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+  }
+</style>

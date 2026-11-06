@@ -1,7 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
+import ArticleList from '../components/ArticleList.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import { SECTIONS, SITE } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const recentArticles = articles.slice(0, 3);
 ---
 
 <BaseLayout headerOverlay>
@@ -23,7 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <h2 id="articles-title" class="home-articles__title">
             Articles
           </h2>
-          <p class="home-articles__empty">尚無文章。</p>
+          <ArticleList articles={recentArticles} />
         </section>
 
         <nav class="home-sections" aria-label="主要內容">
@@ -116,11 +123,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .home-articles__title {
     font-size: var(--text-2xl);
-  }
-
-  .home-articles__empty {
-    margin-block-start: var(--space-3);
-    color: var(--color-text-muted);
   }
 
   .home-sections {

@@ -1,0 +1,174 @@
+.prose {
+  overflow-wrap: break-word;
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.8;
+}
+
+.prose > * + * {
+  margin-block-start: 1.5em;
+}
+
+.prose > :first-child {
+  margin-block-start: 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-block-start: 2.2em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 2rem;
+  text-wrap: balance;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+}
+
+.prose h4 {
+  font-size: 1.0625rem;
+}
+
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-block-start: 0.6em;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-border-strong);
+  transition: text-decoration-color var(--duration) var(--ease);
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
+}
+
+.prose li + li {
+  margin-block-start: 0.4em;
+}
+
+.prose blockquote {
+  padding-inline-start: var(--space-4);
+  border-inline-start: 2px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+.prose blockquote > * + * {
+  margin-block-start: 0.8em;
+}
+
+.prose :not(pre) > code {
+  padding: 0.12em 0.35em;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  font-size: 0.875em;
+}
+
+.prose pre {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+}
+
+/* Shiki 雙主題 */
+.prose .astro-code,
+.prose .astro-code span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+.prose .astro-code {
+  background-color: var(--color-surface);
+}
+
+:root[data-theme='dark'] .prose .astro-code,
+:root[data-theme='dark'] .prose .astro-code span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.prose figure {
+  margin: 0;
+}
+
+.prose figcaption {
+  margin-block-start: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+.prose hr {
+  margin-block: var(--space-8);
+  border: 0;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  text-align: start;
+}
+
+.prose th {
+  background-color: var(--color-surface);
+  font-weight: 600;
+}
+
+.prose .katex-display {
+  padding-block: 0.25rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
