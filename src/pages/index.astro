@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import ArticleList from '../components/ArticleList.astro';
 import ProfileCard from '../components/ProfileCard.astro';
-import { SECTIONS, SITE } from '../config/site';
+import { SECTIONS } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const articles = (await getCollection('articles')).sort(
@@ -13,7 +13,9 @@ const recentArticles = articles.slice(0, 3);
 
 <BaseLayout headerOverlay>
   <section class="hero">
-    <h1 class="hero__title">{SITE.name}</h1>
+    <h1 class="hero__title" lang="ru">
+      Даже в тяжести самых крутых перемен
+    </h1>
     <span class="hero__scroll" aria-hidden="true">
       ↓
     </span>
@@ -78,9 +80,11 @@ const recentArticles = articles.slice(0, 3);
   .hero__title {
     position: relative;
     z-index: 1;
-    font-size: clamp(3rem, 10vw, 7rem);
+    max-width: 22ch;
+    margin-inline: auto;
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: -0.03em;
     text-shadow: 0 2px 24px rgb(0 0 0 / 0.35);
   }
