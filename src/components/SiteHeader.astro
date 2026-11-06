@@ -1,4 +1,5 @@
 ---
+import favicon from '../../images/decorative/icons/favicon.svg?url';
 import { SECTIONS, SITE } from '../config/site';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -19,7 +20,8 @@ function isActive(href: string): boolean {
 <header class:list={['site-header', { 'site-header--overlay': overlay }]}>
   <div class="container site-header__inner">
     <a class="brand" href="/">
-      {SITE.name}
+      <img class="brand__icon" src={favicon} alt="" width="24" height="24" aria-hidden="true" />
+      <span>{SITE.name}</span>
     </a>
 
     <nav class="nav" aria-label="主要導覽">
@@ -73,10 +75,19 @@ function isActive(href: string): boolean {
   }
 
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: var(--text-lg);
     font-weight: 600;
     letter-spacing: -0.01em;
     text-decoration: none;
+  }
+
+  .brand__icon {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .nav ul {

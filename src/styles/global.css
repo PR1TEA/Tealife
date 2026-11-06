@@ -235,6 +235,11 @@ h4 {
   outline-color: #fff;
 }
 
+/* 白色圖示在淺色頁首上轉為深色，深色主題與滿版頁首維持白色 */
+:root:not([data-theme='dark']) .site-header:not(.site-header--overlay) .brand__icon {
+  filter: invert(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
