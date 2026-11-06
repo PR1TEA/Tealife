@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ArticleList from '../components/ArticleList.astro';
+import Calendar from '../components/Calendar.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import { SECTIONS } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -23,8 +24,11 @@ const recentArticles = articles.slice(0, 3);
 
   <section class="home-body">
     <div class="container home-body__layout">
-      <aside class="home-profile" aria-label="個人資料">
-        <ProfileCard />
+      <aside class="home-sidebar" aria-label="個人資料與日曆">
+        <div class="home-profile">
+          <ProfileCard />
+        </div>
+        <Calendar />
       </aside>
 
       <div class="home-body__main">
@@ -118,9 +122,15 @@ const recentArticles = articles.slice(0, 3);
     gap: clamp(2rem, 5vw, 4rem);
   }
 
-  .home-profile {
+  .home-sidebar {
     position: sticky;
     inset-block-start: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .home-profile {
     padding: var(--space-5);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -171,7 +181,7 @@ const recentArticles = articles.slice(0, 3);
       grid-template-columns: 1fr;
     }
 
-    .home-profile {
+    .home-sidebar {
       position: static;
       max-width: 22rem;
     }

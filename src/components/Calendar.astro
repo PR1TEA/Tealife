@@ -1,0 +1,109 @@
+---
+// 以瀏覽器 Date 計算當月日期；年份使用完整四位數，閏年與未來年份由 Date 處理。
+---
+
+<section class="calendar" data-calendar aria-labelledby="calendar-title">
+  <h2 id="calendar-title" class="calendar__title" data-calendar-title>
+    —
+  </h2>
+
+  <table class="calendar__table">
+    <thead>
+      <tr>
+        <th scope="col">日</th>
+        <th scope="col">一</th>
+        <th scope="col">二</th>
+        <th scope="col">三</th>
+        <th scope="col">四</th>
+        <th scope="col">五</th>
+        <th scope="col">六</th>
+      </tr>
+    </thead>
+    <tbody data-calendar-days></tbody>
+  </table>
+</section>
+
+<script is:inline>
+  const calendar = document.querySelector('[data-calendar]');
+  const title = calendar?.querySelector('[data-calendar-title]');
+  const body = calendar?.querySelector('[data-calendar-days]');
+
+  if (calendar && title && body) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const today = now.getDate();
+
+    title.textContent = `${year} 年 ${month + 1} 月`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    let row = document.createElement('tr');
+
+    for (let i = 0; i < firstDay; i += 1) {
+      row.append(document.createElement('td'));
+    }
+
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const cell = document.createElement('td');
+      cell.textContent = String(day);
+
+      if (day === today) {
+        cell.classList.add('calendar__today');
+        cell.setAttribute('aria-current', 'date');
+      }
+
+      row.append(cell);
+
+      if ((firstDay + day) % 7 === 0) {
+        body.append(row);
+        row = document.createElement('tr');
+      }
+    }
+
+    if (row.childElementCount > 0) {
+      body.append(row);
+    }
+  }
+</script>
+
+<style>
+  .calendar {
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
+  .calendar__title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .calendar__table {
+    width: 100%;
+    margin-block-start: var(--space-3);
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: var(--text-xs);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .calendar__table th {
+    padding-block: var(--space-1);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .calendar__table td {
+    padding-block: var(--space-1);
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .calendar__today {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+</style>
