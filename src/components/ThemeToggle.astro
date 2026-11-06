@@ -3,9 +3,20 @@
  * 深色 / 淺色模式切換。
  * 初始主題由 BaseLayout 的 inline script 在首次繪製前設定。
  */
+interface Props {
+  /** 放在深色背景上時使用白色樣式 */
+  inverse?: boolean;
+}
+
+const { inverse = false } = Astro.props;
 ---
 
-<button class="theme-toggle" type="button" data-theme-toggle aria-label="切換深色模式">
+<button
+  class:list={['theme-toggle', { 'theme-toggle--inverse': inverse }]}
+  type="button"
+  data-theme-toggle
+  aria-label="切換深色模式"
+>
   <svg
     class="icon icon--sun"
     xmlns="http://www.w3.org/2000/svg"
@@ -81,6 +92,16 @@
   .theme-toggle:hover {
     color: var(--color-text);
     border-color: var(--color-border-strong);
+  }
+
+  .theme-toggle--inverse {
+    border-color: rgb(255 255 255 / 0.35);
+    color: #fff;
+  }
+
+  .theme-toggle--inverse:hover {
+    border-color: #fff;
+    color: #fff;
   }
 
   .theme-toggle .icon {

@@ -39,6 +39,7 @@ src/
 ## 設計
 
 - 中性色盤，沒有品牌強調色。
+- 首頁是滿版背景（`--home-wallpaper`，目前為純黑）加上置中標題；下方為文章區塊，再往下是名片與入口。
 - 字體：Inter（拉丁）、Noto Sans SC（中文）、JetBrains Mono（程式碼）。
 - 字型以 Fontsource 的 unicode-range 子集載入，瀏覽器只下載實際用到的區段。
 - 深色模式由 `data-theme` 與 CSS 變數切換。

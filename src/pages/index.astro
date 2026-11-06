@@ -4,16 +4,28 @@ import { SECTIONS, SITE } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout>
-  <div class="page">
+<BaseLayout headerOverlay>
+  <section class="hero">
+    <h1 class="hero__title">{SITE.name}</h1>
+    <span class="hero__scroll" aria-hidden="true">
+      ↓
+    </span>
+  </section>
+
+  <section class="home-articles" aria-labelledby="articles-title">
     <div class="container container--narrow">
-      <h1 class="page-title">{SITE.name}</h1>
+      <h2 id="articles-title" class="home-articles__title">
+        Articles
+      </h2>
+      <p class="home-articles__empty">尚無文章。</p>
+    </div>
+  </section>
 
-      <div class="home__profile">
-        <ProfileCard />
-      </div>
+  <div class="home-about">
+    <div class="container container--narrow">
+      <ProfileCard />
 
-      <nav class="home__sections" aria-label="主要內容">
+      <nav class="home-sections" aria-label="主要內容">
         {SECTIONS.map((section) => (
           <a class="section-link" href={section.href}>
             <span class="section-link__label">{section.label}</span>
@@ -28,12 +40,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .home__profile {
-    margin-block-start: var(--space-6);
+  .hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: var(--space-5);
+    overflow: hidden;
+    background-color: #000;
+    background-image: var(--home-wallpaper);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    text-align: center;
   }
 
-  .home__sections {
-    margin-block-start: var(--space-7);
+  /* 之後換上壁紙時，用一層暗色遮罩確保文字可讀 */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.35);
+  }
+
+  .hero__title {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    z-index: 1;
+    inset-block-end: var(--space-5);
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    color: rgb(255 255 255 / 0.55);
+    font-size: var(--text-lg);
+    line-height: 1;
+  }
+
+  .home-articles {
+    padding-block: clamp(4rem, 9vw, 7rem) var(--space-8);
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .home-articles__title {
+    font-size: var(--text-2xl);
+  }
+
+  .home-articles__empty {
+    margin-block-start: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .home-about {
+    padding-block: var(--space-8) 0;
+  }
+
+  .home-sections {
+    margin-block-start: var(--space-6);
     border-block-start: 1px solid var(--color-border);
   }
 

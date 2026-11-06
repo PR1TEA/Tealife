@@ -52,6 +52,9 @@
   --measure: 42rem;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
 
+  /* 首頁滿版背景；之後可改成 url('/wallpaper.jpg') */
+  --home-wallpaper: none;
+
   /* 動態 */
   --duration: 150ms;
   --ease: ease;
@@ -228,6 +231,11 @@ h4 {
 
 :root[data-theme='dark'] .theme-toggle .icon--moon {
   display: none;
+}
+
+/* 浮在深色背景上的頁首，focus 外框改用白色 */
+.site-header--overlay :focus-visible {
+  outline-color: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {
