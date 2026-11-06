@@ -10,6 +10,7 @@ const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const recentArticles = articles.slice(0, 3);
+const homeSections = SECTIONS.filter((section) => section.href === '/photography/');
 ---
 
 <BaseLayout headerOverlay>
@@ -40,7 +41,7 @@ const recentArticles = articles.slice(0, 3);
         </section>
 
         <nav class="home-sections" aria-label="主要內容">
-          {SECTIONS.map((section) => (
+          {homeSections.map((section) => (
             <a class="section-link" href={section.href}>
               <span class="section-link__label">{section.label}</span>
               <span class="section-link__arrow" aria-hidden="true">
