@@ -12,31 +12,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </span>
   </section>
 
-  <section class="home-articles" aria-labelledby="articles-title">
-    <div class="container container--narrow">
-      <h2 id="articles-title" class="home-articles__title">
-        Articles
-      </h2>
-      <p class="home-articles__empty">尚無文章。</p>
+  <section class="home-body">
+    <div class="container home-body__layout">
+      <aside class="home-profile" aria-label="個人資料">
+        <ProfileCard />
+      </aside>
+
+      <div class="home-body__main">
+        <section class="home-articles" aria-labelledby="articles-title">
+          <h2 id="articles-title" class="home-articles__title">
+            Articles
+          </h2>
+          <p class="home-articles__empty">尚無文章。</p>
+        </section>
+
+        <nav class="home-sections" aria-label="主要內容">
+          {SECTIONS.map((section) => (
+            <a class="section-link" href={section.href}>
+              <span class="section-link__label">{section.label}</span>
+              <span class="section-link__arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          ))}
+        </nav>
+      </div>
     </div>
   </section>
-
-  <div class="home-about">
-    <div class="container container--narrow">
-      <ProfileCard />
-
-      <nav class="home-sections" aria-label="主要內容">
-        {SECTIONS.map((section) => (
-          <a class="section-link" href={section.href}>
-            <span class="section-link__label">{section.label}</span>
-            <span class="section-link__arrow" aria-hidden="true">
-              →
-            </span>
-          </a>
-        ))}
-      </nav>
-    </div>
-  </div>
 </BaseLayout>
 
 <style>
@@ -87,9 +89,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1;
   }
 
+  .home-body {
+    padding-block: clamp(4rem, 9vw, 7rem) 0;
+  }
+
+  .home-body__layout {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 42rem);
+    align-items: start;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .home-profile {
+    position: sticky;
+    inset-block-start: var(--space-6);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
   .home-articles {
-    padding-block: clamp(4rem, 9vw, 7rem) var(--space-8);
-    border-block-end: 1px solid var(--color-border);
+    padding-block: 0 var(--space-8);
   }
 
   .home-articles__title {
@@ -99,10 +121,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .home-articles__empty {
     margin-block-start: var(--space-3);
     color: var(--color-text-muted);
-  }
-
-  .home-about {
-    padding-block: var(--space-8) 0;
   }
 
   .home-sections {
@@ -134,5 +152,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .section-link:hover .section-link__arrow {
     color: var(--color-text);
     transform: translateX(0.2rem);
+  }
+
+  @media (max-width: 56rem) {
+    .home-body__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .home-profile {
+      position: static;
+      max-width: 18rem;
+    }
   }
 </style>

@@ -1,9 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import { PROFILE } from '../config/profile';
 
+const avatar = PROFILE.avatar;
 const name = PROFILE.name.trim();
 const displayName = name || '名稱待填寫';
-const hasAvatar = Boolean(PROFILE.avatar);
 const hasBio = Boolean(PROFILE.bio?.trim());
 const links = PROFILE.links ?? [];
 
@@ -13,16 +14,10 @@ function isExternal(href: string): boolean {
 ---
 
 <section class="profile" aria-labelledby="profile-name">
-  {hasAvatar && (
-    <img
-      class="profile__avatar"
-      src={PROFILE.avatar}
-      alt={name}
-      width="72"
-      height="72"
-      loading="eager"
-      decoding="async"
-    />
+  {avatar && (
+    <div class="profile__avatar">
+      <Image src={avatar} alt={name} width={144} height={144} loading="lazy" decoding="async" />
+    </div>
   )}
 
   <div class="profile__body">
@@ -53,16 +48,27 @@ function isExternal(href: string): boolean {
 <style>
   .profile {
     display: flex;
-    align-items: center;
-    gap: var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
   }
 
   .profile__avatar {
     flex: none;
     width: 4.5rem;
     height: 4.5rem;
+    overflow: hidden;
     border-radius: var(--radius-full);
+  }
+
+  .profile__avatar :global(img) {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+  }
+
+  .profile__body {
+    width: 100%;
   }
 
   .profile__name {
