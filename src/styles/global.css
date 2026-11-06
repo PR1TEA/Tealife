@@ -56,15 +56,15 @@
   --duration: 150ms;
   --ease: ease;
 
-  /* 色彩（深色） */
-  --color-bg: #121212;
-  --color-surface: #1a1a1a;
-  --color-text: #ececec;
+  /* 色彩（經典黑） */
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-text: #f5f5f5;
   --color-text-muted: #a3a3a3;
-  --color-border: #2c2c2c;
-  --color-border-strong: #4a4a4a;
-  --color-focus: #ececec;
-  --color-selection: #333333;
+  --color-border: #222222;
+  --color-border-strong: #3a3a3a;
+  --color-focus: #ffffff;
+  --color-selection: #2a2a2a;
 }
 
 /* 2. 基礎重置 -------------------------------------------------------------- */
