@@ -12,73 +12,7 @@ const articles = (await getCollection('articles')).sort(
   <div class="page">
     <div class="container container--narrow">
       <h1 class="page-title">Articles</h1>
-      <a
-        class="rss-button"
-        href="/rss.xml"
-        data-rss-copy
-        aria-label="複製 RSS 連結"
-        title="複製 RSS 連結"
-      >
-        <span data-rss-label>RSS</span>
-      </a>
       <ArticleList articles={articles} />
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  .rss-button {
-    display: inline-flex;
-    align-items: center;
-    margin-block-start: var(--space-3);
-    padding: 0.375rem 0.75rem;
-    border: 1px solid var(--color-border-strong);
-    border-radius: var(--radius-full);
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
-    transition:
-      color var(--duration) var(--ease),
-      border-color var(--duration) var(--ease);
-  }
-
-  .rss-button:hover,
-  .rss-button.is-copied {
-    color: var(--color-text);
-    border-color: var(--color-text-muted);
-  }
-</style>
-
-<script>
-  const rssButton = document.querySelector<HTMLAnchorElement>('[data-rss-copy]');
-  const rssLabel = rssButton?.querySelector<HTMLElement>('[data-rss-label]');
-
-  if (rssButton && rssLabel) {
-    let resetTimer: number | undefined;
-
-    rssButton.addEventListener('click', async (event) => {
-      event.preventDefault();
-
-      try {
-        await navigator.clipboard.writeText(rssButton.href);
-
-        rssLabel.textContent = '已複製';
-        rssButton.classList.add('is-copied');
-        rssButton.setAttribute('aria-label', '已複製 RSS 連結');
-      } catch {
-        rssLabel.textContent = '複製失敗';
-        rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '複製 RSS 連結');
-      }
-
-      window.clearTimeout(resetTimer);
-      resetTimer = window.setTimeout(() => {
-        rssLabel.textContent = 'RSS';
-        rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '複製 RSS 連結');
-      }, 1800);
-    });
-  }
-</script>
