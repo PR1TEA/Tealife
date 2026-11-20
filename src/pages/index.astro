@@ -122,10 +122,16 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
     color: var(--color-text);
     text-align: center;
   }
-
   @media (max-width: 56rem) and (orientation: portrait) {
     .hero {
+      height: 100svh;
+      min-height: 0;
+
       background-image: url('../../images/decorative/backgrounds/mobile_wallpaper.jpg');
+      background-attachment: scroll;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
     }
   }
 
@@ -453,4 +459,3 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
     });
   }
 </script>
-
