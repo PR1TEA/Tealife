@@ -1,4 +1,4 @@
-/** 友链资料；新增朋友时只需要修改这个档案。 */
+/** 友链信息；新增朋友时只需要修改这个文件。 */
 export interface FriendLink {
   /** 朋友名称 */
   title: string;
@@ -12,7 +12,7 @@ export interface FriendLink {
   tags?: string[];
   /** 排序权重；数字越大越前面 */
   weight?: number;
-  /** 是否显示；预设 true */
+  /** 是否显示；默认 true */
   enabled?: boolean;
 }
 

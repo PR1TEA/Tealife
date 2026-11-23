@@ -13,13 +13,13 @@ export interface Profile {
   avatar?: ImageMetadata;
   /** 一句简短介绍；留空则不显示 */
   bio?: string;
-  /** 个人网站、社群平台等连结；留空则不显示 */
+  /** 个人网站、社交平台等链接；留空则不显示 */
   links?: ProfileLink[];
 }
 
 /**
- * 个人名片资料。
- * 只填入你愿意公开的内容；没有填的栏位不会显示。
+ * 个人名片信息。
+ * 只填入你愿意公开的内容；没有填的字段不会显示。
  * 范例：
  *   bio: '一句简短介绍。',
  *   links: [{ label: 'GitHub', href: 'https://github.com/your-name' }],

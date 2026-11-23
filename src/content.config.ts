@@ -16,9 +16,9 @@ const articles = defineCollection({
       series: z.string().optional(),
       /** 系列中的排序，可选 */
       seriesOrder: z.number().optional(),
-      /** 自订标签 */
+      /** 自定义标签 */
       tags: z.array(z.string()).default([]),
-      /** 封面图，相对于文章档案的路径 */
+      /** 封面图，相对于文章文件的路径 */
       cover: image().optional(),
       coverAlt: z.string().optional(),
     }),

@@ -5,7 +5,7 @@ import { SECTIONS, SITE } from '../config/site';
 const pathname = Astro.url.pathname;
 
 interface Props {
-  /** 浮在深色满版背景上时使用 */
+  /** 浮在深色全屏背景上时使用 */
   overlay?: boolean;
 }
 
@@ -23,7 +23,7 @@ function isActive(href: string): boolean {
       <span>{SITE.name}</span>
     </a>
 
-    <nav class="nav" aria-label="主要导览">
+    <nav class="nav" aria-label="主导航">
       <ul>
         {SECTIONS.map((link) => (
           <li>

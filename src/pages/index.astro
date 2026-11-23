@@ -24,8 +24,8 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
           class="hero__rss"
           href="/rss.xml"
           data-rss-copy
-          aria-label="复制 RSS 连结"
-          title="复制 RSS 连结"
+          aria-label="复制 RSS 链接"
+          title="复制 RSS 链接"
         >
           <span data-rss-label>RSS</span>
         </a>
@@ -414,18 +414,18 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
 
         rssLabel.textContent = '已复制';
         rssButton.classList.add('is-copied');
-        rssButton.setAttribute('aria-label', '已复制 RSS 连结');
+        rssButton.setAttribute('aria-label', '已复制 RSS 链接');
       } catch {
         rssLabel.textContent = '复制失败';
         rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '复制 RSS 连结');
+        rssButton.setAttribute('aria-label', '复制 RSS 链接');
       }
 
       window.clearTimeout(resetTimer);
       resetTimer = window.setTimeout(() => {
         rssLabel.textContent = 'RSS';
         rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '复制 RSS 连结');
+        rssButton.setAttribute('aria-label', '复制 RSS 链接');
       }, 1800);
     });
   }

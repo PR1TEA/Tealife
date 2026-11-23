@@ -70,7 +70,7 @@
       <sub>个人名片、日历与最新文章</sub>
     </td>
     <td width="50%" align="center">
-      <img src=".github/assets/screenshots/photography.webp" alt="摄影相册的混合尺寸磁砖网格" width="100%" />
+      <img src=".github/assets/screenshots/photography.webp" alt="摄影相册的混合尺寸瓷砖网格" width="100%" />
       <br />
       <sub>摄影相册</sub>
     </td>
@@ -99,7 +99,7 @@
 
 | 模块            | 说明                                                                                                                                           |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Photography** | 从 `images/photography/` 自动读取照片，按文件名自然排序（`P1`、`P2`、`P10`），用 Astro `<Image>` 输出 640px 宽版本，并以混合尺寸磁砖网格展示。 |
+| **Photography** | 从 `images/photography/` 自动读取照片，按文件名自然排序（`P1`、`P2`、`P10`），用 Astro `<Image>` 输出 640px 宽版本，并以混合尺寸瓷砖网格展示。 |
 | **Moments**     | 以时间轴呈现简短的 Markdown 记录，frontmatter 只需要 `pubDate`。                                                                               |
 | **Articles**    | 基于 Content Collections 的文章系统，支持分类、系列、标签、封面、自动目录、KaTeX 数学公式、Shiki 代码高亮与 GFM 表格。                         |
 | **Friends**     | 由 `src/config/friendsconfig.ts` 管理友链，支持权重排序与 `enabled` 开关。                                                                     |
@@ -143,7 +143,7 @@
 | **TypeScript**            | `^5.9.3`    | 严格类型检查，继承 `astro/tsconfigs/strict`。                 |
 | **pnpm**                  | `10.33.0`   | 包管理与锁文件；`packageManager` 已固定版本。                 |
 | **Node.js**               | `>=22.23.4` | 构建运行时；`.npmrc` 固定 `24.11.1`。                         |
-| **Markdown / GFM**        | —           | 文章与动态内容，支持表格、清单、引用等。                      |
+| **Markdown / GFM**        | —           | 文章与动态内容，支持表格、列表、引用等。                      |
 | **KaTeX**                 | `^0.19.1`   | 通过 `remark-math` + `rehype-katex` 渲染数学公式。            |
 | **Shiki**                 | Astro 内置  | 代码语法高亮，使用 GitHub 明暗两套主题。                      |
 | **Prettier**              | `^3.9.10`   | 代码与 Markdown 格式化，配合 `prettier-plugin-astro`。        |
