@@ -46,7 +46,10 @@
 
     for (let day = 1; day <= daysInMonth; day += 1) {
       const cell = document.createElement('td');
-      cell.textContent = String(day);
+      const label = document.createElement('span');
+      label.className = 'calendar__day';
+      label.textContent = String(day);
+      cell.append(label);
 
       if (day === today) {
         cell.classList.add('calendar__today');
@@ -98,14 +101,28 @@
     font-weight: 500;
   }
 
-  .calendar__table td {
+  /* 这些 td/span 由客户端脚本动态创建，不带 Astro 的 scoped 属性，故用 :global()。 */
+  .calendar__table :global(td) {
     padding-block: var(--space-1);
     color: var(--color-text-muted);
     font-variant-numeric: tabular-nums;
   }
 
-  .calendar__today {
+  .calendar__table :global(.calendar__day) {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding-inline: 0.125rem;
+    border-radius: 0.25rem;
+  }
+
+  .calendar__table :global(.calendar__today) {
     color: var(--color-text);
+  }
+
+  .calendar__table :global(.calendar__today) :global(.calendar__day) {
+    border: 1px solid var(--color-text);
     font-weight: 700;
   }
 </style>
