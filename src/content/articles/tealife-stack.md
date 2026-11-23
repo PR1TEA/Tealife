@@ -83,7 +83,7 @@ Astro 的 `<Image>` 输出；文章图片用 Markdown 相对路径；壁纸由 C
 
 `pnpm build` 产生 `dist`，这是一份纯静态档案。Cloudflare Pages 从 GitHub 拉
 repo、安装依赖、执行 build，然后发布 `dist`；这个站不需要
-`@astrojs/cloudflare` adapter，也不需要伺服器。
+`@astrojs/cloudflare` adapter，也不需要服务器。
 
 RSS 的 `/rss.xml` 也是在 build 时产生的静态档。对外订阅的网址就是部署网域加上
 `/rss.xml`。`src/config/site.ts` 的 `SITE.url` 决定 feed 内文章连结的网域；如果
