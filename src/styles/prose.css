@@ -102,7 +102,7 @@
   font-size: inherit;
 }
 
-/* Shiki 淺色語法 */
+/* Shiki 浅色语法 */
 .prose .astro-code,
 .prose .astro-code span {
   color: var(--shiki-light);

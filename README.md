@@ -2,7 +2,7 @@
 
 **Photography, moments, and writing — a personal website by PR1TEA.**
 
-[繁體中文](#繁體中文) · [English](#english) · [GitHub](https://github.com/PR1TEA) · [Email](mailto:PR1TEA@icloud.com)
+[简体中文](#简体中文) · [English](#english) · [GitHub](https://github.com/PR1TEA) · [Email](mailto:PR1TEA@icloud.com)
 
 ![Astro](https://img.shields.io/badge/Astro-7-FF5D01?logo=astro&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
@@ -13,67 +13,67 @@
 
 ---
 
-## 繁體中文
+## 简体中文
 
-### 關於
+### 关于
 
-**Tealife** 是 PR1TEA 用來放置攝影、生活動態與文章的個人網站。
+**Tealife** 是 PR1TEA 用来放置摄影、生活动态与文章的个人网站。
 
-它使用 Astro 建置，內容主要以 Markdown 維護，並在建置時輸出靜態頁面。沒有資料庫、會員系統或伺服器端應用程式；設計上盡量讓內容本身保持簡單、可整理，也容易長期保存。
+它使用 Astro 建置，内容主要以 Markdown 维护，并在建置时输出静态页面。没有资料库、会员系统或伺服器端应用程式；设计上尽量让内容本身保持简单、可整理，也容易长期保存。
 
-首頁保留了一句俄語：*Даже в тяжести самых крутых перемен...*
+首页保留了一句俄语：*Даже в тяжести самых крутых перемен...*
 
-### 網站內容
+### 网站内容
 
-| 區域 | 說明 |
+| 区域 | 说明 |
 | --- | --- |
-| **Photography** | 從 `images/photography/` 自動載入照片，以不規則磁磚網格展示。 |
-| **Moments** | 以時間軸呈現簡短的 Markdown 記錄。 |
-| **Articles** | 文章、系列與分類；支援目錄、圖片、數學公式及程式碼高亮。 |
-| **Friends** | 由設定檔管理的友站連結。 |
-| **RSS** | 建置時產生 `/rss.xml`，供訂閱更新。 |
+| **Photography** | 从 `images/photography/` 自动载入照片，以不规则磁砖网格展示。 |
+| **Moments** | 以时间轴呈现简短的 Markdown 记录。 |
+| **Articles** | 文章、系列与分类；支援目录、图片、数学公式及程式码高亮。 |
+| **Friends** | 由设定档管理的友站连结。 |
+| **RSS** | 建置时产生 `/rss.xml`，供订阅更新。 |
 
-首頁另外提供個人名片、當月日曆、最新五篇文章，以及 RSS、GitHub、Email 入口。網站以淺灰色、壁紙與半透明面板為主要視覺元素，桌面和行動裝置各有對應壁紙。
+首页另外提供个人名片、当月日历、最新五篇文章，以及 RSS、GitHub、Email 入口。网站以浅灰色、壁纸与半透明面板为主要视觉元素，桌面和行动装置各有对应壁纸。
 
-### 技術
+### 技术
 
-- **Astro 7.4.5**：靜態站點生成與 content collections。
+- **Astro 7.4.5**：静态站点生成与 content collections。
 - **TypeScript 5.9.3**、**pnpm 10.33.0**、**Node.js 24.11.1**。
-- **Markdown / GFM**：文章和動態內容；**KaTeX** 處理數學，**Shiki** 處理程式碼高亮。
-- **原生 CSS / JavaScript**：Grid、Flexbox、CSS 變數、`backdrop-filter`、日曆與複製按鈕；不使用前端 UI 框架。
-- **Cloudflare Pages**：由 GitHub 觸發建置，部署 `dist/` 靜態檔案。
+- **Markdown / GFM**：文章和动态内容；**KaTeX** 处理数学，**Shiki** 处理程式码高亮。
+- **原生 CSS / JavaScript**：Grid、Flexbox、CSS 变数、`backdrop-filter`、日历与复制按钮；不使用前端 UI 框架。
+- **Cloudflare Pages**：由 GitHub 触发建置，部署 `dist/` 静态档案。
 
-字體為 Inter Variable、Noto Sans SC Variable 與 JetBrains Mono Variable。網站目前只有淺色主題，並支援基本的鍵盤操作和 `prefers-reduced-motion`。
+字体为 Inter Variable、Noto Sans SC Variable 与 JetBrains Mono Variable。网站目前只有浅色主题，并支援基本的键盘操作和 `prefers-reduced-motion`。
 
-### 本機開發
+### 本机开发
 
-需求：Node.js `>=22.23.4`（專案以 `.npmrc` 指定 `24.11.1`）及 pnpm `10.33.0`。
+需求：Node.js `>=22.23.4`（专案以 `.npmrc` 指定 `24.11.1`）及 pnpm `10.33.0`。
 
 ```bash
 pnpm install
-pnpm dev       # 啟動開發伺服器
+pnpm dev       # 启动开发伺服器
 pnpm build     # 建置至 dist/
-pnpm preview   # 預覽建置結果
-pnpm check     # Astro / TypeScript 檢查
+pnpm preview   # 预览建置结果
+pnpm check     # Astro / TypeScript 检查
 pnpm format    # Prettier 格式化
 ```
 
-### 專案結構
+### 专案结构
 
 ```text
 Tealife/
 ├── images/
-│   ├── decorative/         # 頭像、壁紙與 favicon
-│   └── photography/        # 相冊照片
+│   ├── decorative/         # 头像、壁纸与 favicon
+│   └── photography/        # 相册照片
 ├── src/
-│   ├── components/         # 頁首、頁腳、名片、日曆、文章列表
-│   ├── config/             # 網站、個人資料與友鏈設定
+│   ├── components/         # 页首、页脚、名片、日历、文章列表
+│   ├── config/             # 网站、个人资料与友链设定
 │   ├── content/
-│   │   ├── articles/       # 文章 Markdown 與圖片
-│   │   └── moments/        # 動態 Markdown
-│   ├── layouts/            # 頁面與文章版型
-│   ├── pages/              # 靜態路由與 RSS endpoint
-│   ├── styles/             # 全站及文章樣式
+│   │   ├── articles/       # 文章 Markdown 与图片
+│   │   └── moments/        # 动态 Markdown
+│   ├── layouts/            # 页面与文章版型
+│   ├── pages/              # 静态路由与 RSS endpoint
+│   ├── styles/             # 全站及文章样式
 │   ├── utils/
 │   └── content.config.ts   # Content collection schemas
 ├── astro.config.mjs
@@ -84,48 +84,48 @@ Tealife/
 └── README.md
 ```
 
-`src/content/photography/` 僅為保留資料夾；相冊實際讀取 `images/photography/`。`dist/`、`node_modules/`、`.astro/` 和 `.cache/` 為產生檔案，不應納入版控。
+`src/content/photography/` 仅为保留资料夹；相册实际读取 `images/photography/`。`dist/`、`node_modules/`、`.astro/` 和 `.cache/` 为产生档案，不应纳入版控。
 
-### 新增內容
+### 新增内容
 
-**文章**：在 `src/content/articles/` 新增 `.md` 檔案。檔名是路由 slug，例如 `mint-tea.md` 對應 `/articles/mint-tea/`。文章標題由 frontmatter 的 `title` 顯示，正文從 `##` 開始。
+**文章**：在 `src/content/articles/` 新增 `.md` 档案。档名是路由 slug，例如 `mint-tea.md` 对应 `/articles/mint-tea/`。文章标题由 frontmatter 的 `title` 显示，正文从 `##` 开始。
 
 ```yaml
 ---
-title: "文章標題"
-description: "簡短摘要"
+title: "文章标题"
+description: "简短摘要"
 pubDate: 2026-11-20
 category: "Writing"
 tags: ["Notes"]
 ---
 ```
 
-必要欄位為 `title`、`description`、`pubDate`、`category`；可選欄位為 `updatedDate`、`series`、`seriesOrder`、`tags`、`cover`、`coverAlt`。支援 Markdown / GFM、`$...$` 與 `$$...$$` 數學公式、Shiki 程式碼區塊；`##` 和 `###` 會自動產生文章目錄。文章圖片可放在 `src/content/articles/images/`，以相對路徑引用。封面則透過 frontmatter 的 `cover` 設定。
+必要栏位为 `title`、`description`、`pubDate`、`category`；可选栏位为 `updatedDate`、`series`、`seriesOrder`、`tags`、`cover`、`coverAlt`。支援 Markdown / GFM、`$...$` 与 `$$...$$` 数学公式、Shiki 程式码区块；`##` 和 `###` 会自动产生文章目录。文章图片可放在 `src/content/articles/images/`，以相对路径引用。封面则透过 frontmatter 的 `cover` 设定。
 
-**動態**：在 `src/content/moments/` 新增 `.md`，frontmatter 只需要 `pubDate`，其餘為 Markdown 正文。
+**动态**：在 `src/content/moments/` 新增 `.md`，frontmatter 只需要 `pubDate`，其余为 Markdown 正文。
 
-**攝影**：將 AVIF、JPG、JPEG、PNG 或 WebP 放入 `images/photography/`。圖片依檔名自然排序（如 `P1`、`P2`、`P10`），經 Astro `<Image>` 處理並輸出 640px 寬度版本。
+**摄影**：将 AVIF、JPG、JPEG、PNG 或 WebP 放入 `images/photography/`。图片依档名自然排序（如 `P1`、`P2`、`P10`），经 Astro `<Image>` 处理并输出 640px 宽度版本。
 
-**友鏈**：在 `src/config/friendsconfig.ts` 編輯 `friendsConfig`；每筆資料包含 `title`、`imgurl`、`desc`、`siteurl`，可選 `tags`、`weight`、`enabled`。`weight` 越大越靠前，`enabled: false` 會隱藏該項；`tags` 目前不顯示於頁面。
+**友链**：在 `src/config/friendsconfig.ts` 编辑 `friendsConfig`；每笔资料包含 `title`、`imgurl`、`desc`、`siteurl`，可选 `tags`、`weight`、`enabled`。`weight` 越大越靠前，`enabled: false` 会隐藏该项；`tags` 目前不显示于页面。
 
-### 設定與部署
+### 设定与部署
 
-| 設定檔 | 用途 |
+| 设定档 | 用途 |
 | --- | --- |
-| `src/config/site.ts` | 網站名稱、正式網址、描述、語言、起始日期與導覽項目。 |
-| `src/config/profile.ts` | 首頁名片的名稱、頭像、簡介與連結。 |
-| `src/config/friendsconfig.ts` | 友鏈內容及排序。 |
-| `src/content.config.ts` | `articles`、`moments` 的內容 schema。 |
+| `src/config/site.ts` | 网站名称、正式网址、描述、语言、起始日期与导览项目。 |
+| `src/config/profile.ts` | 首页名片的名称、头像、简介与连结。 |
+| `src/config/friendsconfig.ts` | 友链内容及排序。 |
+| `src/content.config.ts` | `articles`、`moments` 的内容 schema。 |
 
-Cloudflare Pages 使用 **Astro** preset，建置指令 `pnpm build`，輸出目錄 `dist`，根目錄為專案根目錄；無需 Cloudflare adapter 或伺服器 runtime。Node 版本為 `24.11.1`，pnpm 版本為 `10.33.0`。
+Cloudflare Pages 使用 **Astro** preset，建置指令 `pnpm build`，输出目录 `dist`，根目录为专案根目录；无需 Cloudflare adapter 或伺服器 runtime。Node 版本为 `24.11.1`，pnpm 版本为 `10.33.0`。
 
-部署後請將 `src/config/site.ts` 的 `SITE.url` 設為實際網址（建議使用自訂網域作為 canonical），並填寫 `SITE.description`。`SITE.url` 若留空，RSS 文章連結可能是相對路徑。`.npmrc` 另外設定了 Node 下載鏡像；若建置時下載 Node 發生問題，可檢查鏡像設定與 Pages 的 `NODE_VERSION`。
+部署后请将 `src/config/site.ts` 的 `SITE.url` 设为实际网址（建议使用自订网域作为 canonical），并填写 `SITE.description`。`SITE.url` 若留空，RSS 文章连结可能是相对路径。`.npmrc` 另外设定了 Node 下载镜像；若建置时下载 Node 发生问题，可检查镜像设定与 Pages 的 `NODE_VERSION`。
 
-### 授權與聯絡
+### 授权与联络
 
-**程式碼**以 [GNU GPL v3.0](LICENSE)（GPL-3.0-only）授權；**文章、動態與原創攝影作品**不因此自動採用 GPL，未經同意請勿轉載或重用。第三方素材與依賴仍遵循各自授權。著作權標示：`Tealife / Copyright (C) 2026 PR1TEA`。
+**程式码**以 [GNU GPL v3.0](LICENSE)（GPL-3.0-only）授权；**文章、动态与原创摄影作品**不因此自动采用 GPL，未经同意请勿转载或重用。第三方素材与依赖仍遵循各自授权。著作权标示：`Tealife / Copyright (C) 2026 PR1TEA`。
 
-歡迎透過 GitHub Issues／Pull Requests 回報程式問題或提出改進建議。
+欢迎透过 GitHub Issues／Pull Requests 回报程式问题或提出改进建议。
 
 [GitHub](https://github.com/PR1TEA) · [Email](mailto:PR1TEA@icloud.com) · RSS：`/rss.xml`
 

@@ -7,21 +7,21 @@ export interface ProfileLink {
 }
 
 export interface Profile {
-  /** 顯示名稱或暱稱 */
+  /** 显示名称或暱称 */
   name: string;
-  /** 頭像；留空則不顯示 */
+  /** 头像；留空则不显示 */
   avatar?: ImageMetadata;
-  /** 一句簡短介紹；留空則不顯示 */
+  /** 一句简短介绍；留空则不显示 */
   bio?: string;
-  /** 個人網站、社群平台等連結；留空則不顯示 */
+  /** 个人网站、社群平台等连结；留空则不显示 */
   links?: ProfileLink[];
 }
 
 /**
- * 個人名片資料。
- * 只填入你願意公開的內容；沒有填的欄位不會顯示。
- * 範例：
- *   bio: '一句簡短介紹。',
+ * 个人名片资料。
+ * 只填入你愿意公开的内容；没有填的栏位不会显示。
+ * 范例：
+ *   bio: '一句简短介绍。',
  *   links: [{ label: 'GitHub', href: 'https://github.com/your-name' }],
  */
 export const PROFILE: Profile = {

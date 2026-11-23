@@ -24,8 +24,8 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
           class="hero__rss"
           href="/rss.xml"
           data-rss-copy
-          aria-label="複製 RSS 連結"
-          title="複製 RSS 連結"
+          aria-label="复制 RSS 连结"
+          title="复制 RSS 连结"
         >
           <span data-rss-label>RSS</span>
         </a>
@@ -48,8 +48,8 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
           type="button"
           data-email-copy
           data-email="PR1TEA@icloud.com"
-          aria-label="複製 PR1TEA@icloud.com"
-          title="複製 PR1TEA@icloud.com"
+          aria-label="复制 PR1TEA@icloud.com"
+          title="复制 PR1TEA@icloud.com"
         >
           <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
             <path
@@ -68,7 +68,7 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
 
   <section class="home-body">
     <div class="container home-body__layout">
-      <aside class="home-sidebar" aria-label="個人資料與日曆">
+      <aside class="home-sidebar" aria-label="个人资料与日历">
         <div class="home-profile">
           <ProfileCard />
         </div>
@@ -89,7 +89,7 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
           <ArticleList articles={recentArticles} />
         </section>
 
-        <nav class="home-sections" aria-label="主要內容">
+        <nav class="home-sections" aria-label="主要内容">
           {homeSections.map((section) => (
             <a class="section-link" href={section.href}>
               <span class="section-link__label">{section.label}</span>
@@ -135,7 +135,7 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
     }
   }
 
-  /* 暗色遮罩，確保壁紙上的文字可讀 */
+  /* 暗色遮罩，确保壁纸上的文字可读 */
   .hero::after {
     content: '';
     position: absolute;
@@ -412,20 +412,20 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
       try {
         await navigator.clipboard.writeText(rssButton.href);
 
-        rssLabel.textContent = '已複製';
+        rssLabel.textContent = '已复制';
         rssButton.classList.add('is-copied');
-        rssButton.setAttribute('aria-label', '已複製 RSS 連結');
+        rssButton.setAttribute('aria-label', '已复制 RSS 连结');
       } catch {
-        rssLabel.textContent = '複製失敗';
+        rssLabel.textContent = '复制失败';
         rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '複製 RSS 連結');
+        rssButton.setAttribute('aria-label', '复制 RSS 连结');
       }
 
       window.clearTimeout(resetTimer);
       resetTimer = window.setTimeout(() => {
         rssLabel.textContent = 'RSS';
         rssButton.classList.remove('is-copied');
-        rssButton.setAttribute('aria-label', '複製 RSS 連結');
+        rssButton.setAttribute('aria-label', '复制 RSS 连结');
       }, 1800);
     });
   }
@@ -441,20 +441,20 @@ const homeSections = SECTIONS.filter((section) => section.href === '/photography
       try {
         await navigator.clipboard.writeText(email);
 
-        emailLabel.textContent = '已複製';
+        emailLabel.textContent = '已复制';
         emailButton.classList.add('is-copied');
-        emailButton.setAttribute('aria-label', '已複製 PR1TEA@icloud.com');
+        emailButton.setAttribute('aria-label', '已复制 PR1TEA@icloud.com');
       } catch {
-        emailLabel.textContent = '複製失敗';
+        emailLabel.textContent = '复制失败';
         emailButton.classList.remove('is-copied');
-        emailButton.setAttribute('aria-label', '複製 PR1TEA@icloud.com');
+        emailButton.setAttribute('aria-label', '复制 PR1TEA@icloud.com');
       }
 
       window.clearTimeout(emailResetTimer);
       emailResetTimer = window.setTimeout(() => {
         emailLabel.textContent = email;
         emailButton.classList.remove('is-copied');
-        emailButton.setAttribute('aria-label', '複製 PR1TEA@icloud.com');
+        emailButton.setAttribute('aria-label', '复制 PR1TEA@icloud.com');
       }, 1800);
     });
   }

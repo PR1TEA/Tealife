@@ -12,7 +12,7 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
-  /** 首頁使用：讓頁首浮在滿版背景上 */
+  /** 首页使用：让页首浮在满版背景上 */
   headerOverlay?: boolean;
 }
 
@@ -38,7 +38,7 @@ const pageTitle = title ? `${title} — ${SITE.name}` : SITE.name;
   </head>
   <body class:list={[{ 'home-background': headerOverlay }]}>
     <a class="skip-link" href="#main-content">
-      跳至主要內容
+      跳至主要内容
     </a>
     <SiteHeader overlay={headerOverlay} />
     <main id="main-content">

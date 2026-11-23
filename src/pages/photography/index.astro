@@ -16,7 +16,7 @@ const photos = Object.entries(modules)
 
     return {
       src: module.default,
-      alt: `攝影作品 ${index + 1}`,
+      alt: `摄影作品 ${index + 1}`,
       className: isLarge ? 'tile--large' : isWide ? 'tile--wide' : undefined,
     };
   });
@@ -26,7 +26,7 @@ const photos = Object.entries(modules)
   <div class="page">
     <div class="container container--wide">
       <h1 class="photography__sr-title">Photography</h1>
-      <p class="photography__intro">PR1TEA的攝影集，全部由PR1TEA創作，任何時間，任何地點</p>
+      <p class="photography__intro">PR1TEA的摄影集，全部由PR1TEA创作，任何时间，任何地点</p>
 
       {photos.length > 0 && (
         <div class="tiles">

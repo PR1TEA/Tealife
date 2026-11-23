@@ -10,15 +10,15 @@ const articles = defineCollection({
       description: z.string(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      /** 單一分類，例如：使用說明、開發筆記 */
+      /** 单一分类，例如：使用说明、开发笔记 */
       category: z.string(),
-      /** 系列名稱，可選 */
+      /** 系列名称，可选 */
       series: z.string().optional(),
-      /** 系列中的排序，可選 */
+      /** 系列中的排序，可选 */
       seriesOrder: z.number().optional(),
-      /** 自訂標籤 */
+      /** 自订标签 */
       tags: z.array(z.string()).default([]),
-      /** 封面圖，相對於文章檔案的路徑 */
+      /** 封面图，相对于文章档案的路径 */
       cover: image().optional(),
       coverAlt: z.string().optional(),
     }),
