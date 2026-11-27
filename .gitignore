@@ -1,12 +1,14 @@
 node_modules/
 dist/
 .astro/
+.wrangler/
 .pnpm-store/
 .cache/
 
 .env
 .env.*
 !.env.example
+.dev.vars
 
 .DS_Store
 *.log

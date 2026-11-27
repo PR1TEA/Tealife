@@ -14,7 +14,7 @@
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&amp;logoColor=white" alt="TypeScript 5.9" /></a>
   <a href="https://pnpm.io/"><img src="https://img.shields.io/badge/pnpm-10.33-F69220?logo=pnpm&amp;logoColor=white" alt="pnpm 10.33" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-24-5FA04E?logo=nodedotjs&amp;logoColor=white" alt="Node.js 24" /></a>
-  <a href="https://pages.cloudflare.com/"><img src="https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&amp;logoColor=white" alt="Cloudflare Pages" /></a>
+  <a href="https://workers.cloudflare.com/"><img src="https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&amp;logoColor=white" alt="Cloudflare Workers" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-2C4F7C" alt="GPL-3.0" /></a>
 </p>
 
@@ -104,6 +104,7 @@
 | **Articles**    | 基于 Content Collections 的文章系统，支持分类、系列、标签、封面、自动目录、KaTeX 数学公式、Shiki 代码高亮与 GFM 表格。                         |
 | **Friends**     | 由 `src/config/friendsconfig.ts` 管理友链，支持权重排序与 `enabled` 开关。                                                                     |
 | **RSS**         | <img src=".github/assets/logos/rss.svg" width="16" height="16" alt="RSS" /> 构建时生成 `/rss.xml`，供阅读器订阅。                              |
+| **PoW 防护**    | `src/worker.ts` 在静态资源前运行 Anubis 风格 SHA-256 挑战；`/rss.xml`、robots、静态资源与搜索引擎直接放行。                                    |
 | **首页**        | 满屏壁纸 hero、俄语标题、RSS / Email 复制按钮、GitHub 链接、个人名片、当月日历、最新五篇文章与 Photography 入口。                              |
 
 #### 文章能力
@@ -134,21 +135,21 @@
   <img src=".github/assets/logos/markdown.svg" width="38" height="38" alt="Markdown" title="Markdown" />&nbsp;
   <img src=".github/assets/logos/latex.svg" width="38" height="38" alt="KaTeX / LaTeX" title="KaTeX / LaTeX" />&nbsp;
   <img src=".github/assets/logos/prettier.svg" width="38" height="38" alt="Prettier" title="Prettier" />&nbsp;
-  <img src=".github/assets/logos/cloudflare.svg" width="38" height="38" alt="Cloudflare Pages" title="Cloudflare Pages" />
+  <img src=".github/assets/logos/cloudflare.svg" width="38" height="38" alt="Cloudflare Workers" title="Cloudflare Workers" />
 </p>
 
-| 技术                      | 版本        | 在 Tealife 中的角色                                           |
-| ------------------------- | ----------- | ------------------------------------------------------------- |
-| **Astro**                 | `^7.4.5`    | 静态站点生成、Content Collections、图片优化与 Markdown 管线。 |
-| **TypeScript**            | `^5.9.3`    | 严格类型检查，继承 `astro/tsconfigs/strict`。                 |
-| **pnpm**                  | `10.33.0`   | 包管理与锁文件；`packageManager` 已固定版本。                 |
-| **Node.js**               | `>=22.23.4` | 构建运行时；`.npmrc` 固定 `24.11.1`。                         |
-| **Markdown / GFM**        | —           | 文章与动态内容，支持表格、列表、引用等。                      |
-| **KaTeX**                 | `^0.19.1`   | 通过 `remark-math` + `rehype-katex` 渲染数学公式。            |
-| **Shiki**                 | Astro 内置  | 代码语法高亮，使用 GitHub 明暗两套主题。                      |
-| **Prettier**              | `^3.9.10`   | 代码与 Markdown 格式化，配合 `prettier-plugin-astro`。        |
-| **原生 CSS / JavaScript** | —           | 布局、日历、复制按钮与少量交互，无 UI 框架。                  |
-| **Cloudflare Pages**      | —           | 从 GitHub 触发构建，部署 `dist/` 静态文件。                   |
+| 技术                      | 版本        | 在 Tealife 中的角色                                                 |
+| ------------------------- | ----------- | ------------------------------------------------------------------- |
+| **Astro**                 | `^7.4.5`    | 静态站点生成、Content Collections、图片优化与 Markdown 管线。       |
+| **TypeScript**            | `^5.9.3`    | 严格类型检查，继承 `astro/tsconfigs/strict`。                       |
+| **pnpm**                  | `10.33.0`   | 包管理与锁文件；`packageManager` 已固定版本。                       |
+| **Node.js**               | `>=22.23.4` | 构建运行时；`.npmrc` 固定 `24.11.1`。                               |
+| **Markdown / GFM**        | —           | 文章与动态内容，支持表格、列表、引用等。                            |
+| **KaTeX**                 | `^0.19.1`   | 通过 `remark-math` + `rehype-katex` 渲染数学公式。                  |
+| **Shiki**                 | Astro 内置  | 代码语法高亮，使用 GitHub 明暗两套主题。                            |
+| **Prettier**              | `^3.9.10`   | 代码与 Markdown 格式化，配合 `prettier-plugin-astro`。              |
+| **原生 CSS / JavaScript** | —           | 布局、日历、复制按钮与少量交互，无 UI 框架。                        |
+| **Cloudflare Workers**    | —           | Workers Assets 托管 `dist/`，`src/worker.ts` 运行 Anubis 风格 PoW。 |
 
 字体来自 Fontsource：**Inter Variable**、**Noto Sans SC Variable**、**JetBrains Mono Variable**。
 
@@ -171,18 +172,21 @@ Tealife/
 │   ├── pages/              # 路由与 /rss.xml
 │   ├── styles/             # global.css、prose.css
 │   ├── utils/              # date.ts
-│   └── content.config.ts   # Content Collections schema
+│   ├── content.config.ts   # Content Collections schema
+│   └── worker.ts           # Anubis 风格 PoW 中间件
+├── .dev.vars.example
 ├── .npmrc
 ├── .prettierrc.mjs
 ├── astro.config.mjs
 ├── package.json
 ├── pnpm-lock.yaml
 ├── tsconfig.json
+├── wrangler.jsonc
 ├── LICENSE
 └── README.md
 ```
 
-`src/content/photography/` 只是保留目录；相册实际读取 `images/photography/`。`dist/`、`node_modules/`、`.astro/`、`.cache/` 等为生成目录，不纳入版本控制。
+`src/content/photography/` 只是保留目录；相册实际读取 `images/photography/`。`dist/`、`node_modules/`、`.astro/`、`.cache/`、`.wrangler/` 等为生成目录，不纳入版本控制。
 
 ### 开始使用
 
@@ -202,6 +206,8 @@ pnpm check     # Astro / TypeScript 检查
 pnpm format    # Prettier 格式化
 pnpm format:check
 ```
+
+`pnpm dev` 只启动 Astro 开发服务器；要测试 PoW 门禁，请先复制 `.dev.vars.example` 为 `.dev.vars`，再运行 `pnpm exec wrangler dev`。
 
 ### 写内容
 
@@ -271,25 +277,44 @@ tags: ['Notes']
 
 ### 部署
 
-Tealife 是纯静态站点，推荐使用 **Cloudflare Pages**：
+Tealife 通过 **Cloudflare Workers + Workers Assets** 部署。`blog.pr1tea.org` 是 Worker `pr1teablog` 的自定义域。
 
-| 设置                   | 值           |
-| ---------------------- | ------------ |
-| Framework preset       | Astro        |
-| Build command          | `pnpm build` |
-| Build output directory | `dist`       |
-| Root directory         | 仓库根目录   |
-| Node.js version        | `24.11.1`    |
-| pnpm version           | `10.33.0`    |
+```bash
+pnpm build
+pnpm exec wrangler deploy
+```
 
-不需要 `@astrojs/cloudflare` adapter，也不需要服务器运行时。Cloudflare Pages 会从 GitHub 拉取仓库、安装依赖、执行构建并发布 `dist/`。
+`wrangler.jsonc` 将 `./dist` 作为静态资源目录，并设置：
+
+- `assets.run_worker_first = true`：先运行 `src/worker.ts`。
+- `assets.binding = "ASSETS"`：Worker 通过 `env.ASSETS.fetch()` 读取静态资源。
+
+首次部署时，如果 Worker 还只有静态资产（没有 `main`），Cloudflare 不允许添加运行时 secret。先执行上面的 `wrangler deploy` 部署脚本，再运行：
+
+```bash
+pnpm exec wrangler secret put ANUBIS_SECRET
+```
+
+部署脚本后、设置 secret 前，站点会返回 503；设置完成后立即恢复。也可以 push 触发首次构建，然后在 Worker 的 Settings → Variables and Secrets 添加 secret。
+
+`ANUBIS_SECRET` 是 Worker 的运行时 secret，只需设置一次；之后 Git push 触发的自动构建不会清除它。不要把它写进 `wrangler.jsonc`，也不要只放在构建变量里。
+
+本地测试 PoW 门禁：
+
+```bash
+cp .dev.vars.example .dev.vars
+# 修改 .dev.vars 中的 ANUBIS_SECRET
+pnpm exec wrangler dev
+```
+
+`POW_DIFFICULTY` 可选，默认 `4`。`/rss.xml`、`/robots.txt`、`/_astro/*`、`/images/*` 与搜索引擎 bot 默认放行。
 
 部署前请在 `src/config/site.ts` 中填写：
 
 - `SITE.url`：正式网址，建议使用自定义域名作为 canonical。
 - `SITE.description`：站点描述，用于 meta description 与 RSS。
 
-如果 `SITE.url` 留空，RSS 中的文章链接可能会是相对路径。`.npmrc` 还配置了 Node 下载镜像；如果构建时下载 Node 停滞，可以检查该镜像与 Pages 的 `NODE_VERSION` 设置。
+如果 `SITE.url` 留空，RSS 中的文章链接可能会是相对路径。`.npmrc` 还配置了 Node 下载镜像；如果构建时下载 Node 停滞，可以检查该镜像设置。
 
 ### 设计
 
@@ -396,6 +421,7 @@ The goal is simple: keep the site small, easy to organize, and easy to preserve.
 | **Articles**    | A Content Collections-based article system with categories, series, tags, covers, an automatic table of contents, KaTeX math, Shiki syntax highlighting, and GFM tables.          |
 | **Friends**     | Friend links managed in `src/config/friendsconfig.ts`, with weight sorting and an `enabled` toggle.                                                                               |
 | **RSS**         | <img src=".github/assets/logos/rss.svg" width="16" height="16" alt="RSS" /> Generates `/rss.xml` at build time for feed readers.                                                  |
+| **PoW gate**    | `src/worker.ts` runs an Anubis-style SHA-256 challenge before assets; `/rss.xml`, robots, static assets, and search engine bots pass through.                                     |
 | **Home**        | Full-screen wallpaper hero, Russian quote, RSS and Email copy buttons, GitHub link, profile card, current-month calendar, five recent articles, and a Photography entry.          |
 
 #### Article capabilities
@@ -426,7 +452,7 @@ The goal is simple: keep the site small, easy to organize, and easy to preserve.
   <img src=".github/assets/logos/markdown.svg" width="38" height="38" alt="Markdown" title="Markdown" />&nbsp;
   <img src=".github/assets/logos/latex.svg" width="38" height="38" alt="KaTeX / LaTeX" title="KaTeX / LaTeX" />&nbsp;
   <img src=".github/assets/logos/prettier.svg" width="38" height="38" alt="Prettier" title="Prettier" />&nbsp;
-  <img src=".github/assets/logos/cloudflare.svg" width="38" height="38" alt="Cloudflare Pages" title="Cloudflare Pages" />
+  <img src=".github/assets/logos/cloudflare.svg" width="38" height="38" alt="Cloudflare Workers" title="Cloudflare Workers" />
 </p>
 
 | Technology                   | Version          | Role in Tealife                                                                             |
@@ -440,7 +466,7 @@ The goal is simple: keep the site small, easy to organize, and easy to preserve.
 | **Shiki**                    | Built into Astro | Syntax highlighting with the GitHub light and dark themes.                                  |
 | **Prettier**                 | `^3.9.10`        | Code and Markdown formatting with `prettier-plugin-astro`.                                  |
 | **Vanilla CSS / JavaScript** | —                | Layout, calendar, copy buttons, and small interactions; no UI framework.                    |
-| **Cloudflare Pages**         | —                | GitHub-triggered builds that deploy the static `dist/` output.                              |
+| **Cloudflare Workers**       | —                | Workers Assets serves `dist/`; `src/worker.ts` runs the Anubis-style PoW gate.              |
 
 Fonts are provided by Fontsource: **Inter Variable**, **Noto Sans SC Variable**, and **JetBrains Mono Variable**.
 
@@ -463,18 +489,21 @@ Tealife/
 │   ├── pages/              # routes and /rss.xml
 │   ├── styles/             # global.css, prose.css
 │   ├── utils/              # date.ts
-│   └── content.config.ts   # Content Collections schema
+│   ├── content.config.ts   # Content Collections schema
+│   └── worker.ts           # Anubis-style PoW gate
+├── .dev.vars.example
 ├── .npmrc
 ├── .prettierrc.mjs
 ├── astro.config.mjs
 ├── package.json
 ├── pnpm-lock.yaml
 ├── tsconfig.json
+├── wrangler.jsonc
 ├── LICENSE
 └── README.md
 ```
 
-`src/content/photography/` is a reserved directory; the gallery actually reads `images/photography/`. Generated directories such as `dist/`, `node_modules/`, `.astro/`, and `.cache/` are not committed.
+`src/content/photography/` is a reserved directory; the gallery actually reads `images/photography/`. Generated directories such as `dist/`, `node_modules/`, `.astro/`, `.cache/`, and `.wrangler/` are not committed.
 
 ### Getting Started
 
@@ -494,6 +523,8 @@ pnpm check     # Astro / TypeScript checks
 pnpm format    # format with Prettier
 pnpm format:check
 ```
+
+`pnpm dev` starts the Astro dev server only. To test the PoW gate, copy `.dev.vars.example` to `.dev.vars` and run `pnpm exec wrangler dev`.
 
 ### Writing Content
 
@@ -563,25 +594,44 @@ Higher `weight` values appear first; `enabled: false` hides an entry; `tags` are
 
 ### Deployment
 
-Tealife is a fully static site. **Cloudflare Pages** is the recommended target:
+Tealife is deployed as a **Cloudflare Worker with Workers Assets**. `blog.pr1tea.org` is a custom domain on the `pr1teablog` Worker.
 
-| Setting                | Value           |
-| ---------------------- | --------------- |
-| Framework preset       | Astro           |
-| Build command          | `pnpm build`    |
-| Build output directory | `dist`          |
-| Root directory         | Repository root |
-| Node.js version        | `24.11.1`       |
-| pnpm version           | `10.33.0`       |
+```bash
+pnpm build
+pnpm exec wrangler deploy
+```
 
-No `@astrojs/cloudflare` adapter or server runtime is required. Cloudflare Pages pulls the repository from GitHub, installs dependencies, builds the site, and publishes `dist/`.
+`wrangler.jsonc` serves `./dist` as static assets and sets:
+
+- `assets.run_worker_first = true`: run `src/worker.ts` before assets.
+- `assets.binding = "ASSETS"`: the Worker reads assets with `env.ASSETS.fetch()`.
+
+On the first deploy, if the Worker currently has only static assets (no `main`), Cloudflare will not allow runtime secrets. Run the `wrangler deploy` step above first, then:
+
+```bash
+pnpm exec wrangler secret put ANUBIS_SECRET
+```
+
+The site returns 503 between deploying the script and setting the secret; it recovers immediately after. Alternatively, push to trigger the first build, then add the secret in the Worker's Settings → Variables and Secrets.
+
+`ANUBIS_SECRET` is a Worker runtime secret. Set it once; later Git-push builds will not remove it. Do not put it in `wrangler.jsonc` or only in build-time variables.
+
+To test the PoW gate locally:
+
+```bash
+cp .dev.vars.example .dev.vars
+# set ANUBIS_SECRET in .dev.vars
+pnpm exec wrangler dev
+```
+
+`POW_DIFFICULTY` is optional and defaults to `4`. `/rss.xml`, `/robots.txt`, `/_astro/*`, `/images/*`, and search engine bots pass through without a challenge.
 
 Before deploying, set these in `src/config/site.ts`:
 
 - `SITE.url`: the production URL, preferably a custom domain used as the canonical URL.
 - `SITE.description`: the site description used for the meta description and RSS.
 
-If `SITE.url` is empty, RSS item links may be relative. `.npmrc` also configures a Node download mirror; if installs stall during deployment, check that mirror and the Pages `NODE_VERSION` setting.
+If `SITE.url` is empty, RSS item links may be relative. `.npmrc` also configures a Node download mirror; if installs stall during deployment, check that mirror setting.
 
 ### Design
 
