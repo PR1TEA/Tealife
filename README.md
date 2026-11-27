@@ -162,6 +162,8 @@ Tealife/
 ├── images/
 │   ├── decorative/         # 头像、桌面/移动壁纸、favicon
 │   └── photography/        # 相册照片
+├── public/
+│   └── anubis/             # Anubis 吉祥物与授权说明
 ├── src/
 │   ├── components/         # SiteHeader、SiteFooter、ProfileCard、Calendar、ArticleList
 │   ├── config/             # site.ts、profile.ts、friendsconfig.ts
@@ -333,6 +335,7 @@ Tealife 的视觉以浅灰、壁纸和半透明面板为主：
 - **文章、动态与原创摄影作品**：不因代码采用 GPL 而自动适用 GPL；未经同意请勿转载或重用。
 - **第三方素材与依赖**：遵循各自授权。
 - **技术栈图标**：来自 [Simple Icons](https://simpleicons.org/)（CC0 1.0）；各商标归其所有者所有。
+- **Anubis 吉祥物**：插画由 [CELPHASE](https://bsky.app/profile/celphase.bsky.social) 创作，按 MIT 许可使用；详见 `public/anubis/ATTRIBUTIONS.txt`。
 - 版权标示：`Tealife / Copyright (C) 2026 PR1TEA`。
 
 ### 联系
@@ -479,6 +482,8 @@ Tealife/
 ├── images/
 │   ├── decorative/         # avatar, desktop/mobile wallpapers, favicon
 │   └── photography/        # gallery photos
+├── public/
+│   └── anubis/             # Anubis mascot and attribution
 ├── src/
 │   ├── components/         # SiteHeader, SiteFooter, ProfileCard, Calendar, ArticleList
 │   ├── config/             # site.ts, profile.ts, friendsconfig.ts
@@ -650,6 +655,7 @@ Tealife's visual language is built around light gray, wallpaper, and translucent
 - **Articles, moments, and original photographs**: not automatically covered by the code license; do not republish or reuse them without permission.
 - **Third-party assets and dependencies**: covered by their respective licenses.
 - **Tech stack icons**: from [Simple Icons](https://simpleicons.org/) (CC0 1.0); trademarks belong to their respective owners.
+- **Anubis mascot**: artwork by [CELPHASE](https://bsky.app/profile/celphase.bsky.social), used under the MIT license; see `public/anubis/ATTRIBUTIONS.txt`.
 - Copyright notice: `Tealife / Copyright (C) 2026 PR1TEA`.
 
 ### Contact

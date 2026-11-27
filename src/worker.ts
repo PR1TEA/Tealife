@@ -228,20 +228,40 @@ function challengePage(config: Record<string, unknown>): Response {
   .status { font-variant-numeric: tabular-nums; }
   .error { display: none; color: #8b1a1a; }
   .error[data-visible="true"] { display: block; }
+  .mascot {
+    display: block;
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: 0 auto 0.75rem;
+    object-fit: contain;
+  }
+  footer {
+    margin-block-start: 1.25rem;
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  footer a { color: inherit; }
 </style>
 </head>
 <body>
 <main>
+  <img class="mascot" id="mascot" src="/anubis/pensive.webp" alt="Anubis 吉祥物" width="120" height="120">
   <h1>安全验证</h1>
   <p>这个站点使用浏览器端计算来确认访客是真实浏览器。计算会在一两秒内完成，不需要操作。</p>
   <p class="status" id="status">正在验证…</p>
   <p class="error" id="error">验证失败，请刷新页面重试。</p>
   <noscript><p class="error" data-visible="true">需要启用 JavaScript 才能通过验证。</p></noscript>
+  <footer>
+    Anubis 风格验证 · 插画：<a href="https://bsky.app/profile/celphase.bsky.social" target="_blank" rel="noopener noreferrer">CELPHASE</a>
+    · <a href="/anubis/ATTRIBUTIONS.txt">MIT</a>
+  </footer>
 </main>
 <script>
   const config = ${jsonConfig};
   const status = document.getElementById('status');
   const error = document.getElementById('error');
+  const mascot = document.getElementById('mascot');
   const encoder = new TextEncoder();
   const prefix = '0'.repeat(config.difficulty);
 
@@ -277,6 +297,8 @@ function challengePage(config: Record<string, unknown>): Response {
         }),
       });
       if (!response.ok) throw new Error('verify failed');
+      if (mascot) mascot.src = '/anubis/happy.webp';
+      await new Promise((resolve) => setTimeout(resolve, 200));
       const target = new URL(config.redirect, window.location.origin);
       const redirect =
         target.origin === window.location.origin
@@ -285,6 +307,7 @@ function challengePage(config: Record<string, unknown>): Response {
       window.location.replace(redirect);
     } catch (cause) {
       console.error(cause);
+      if (mascot) mascot.src = '/anubis/reject.webp';
       status.textContent = '验证失败';
       error.dataset.visible = 'true';
     }
