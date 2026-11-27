@@ -253,7 +253,7 @@ function challengePage(config: Record<string, unknown>): Response {
   <p class="error" id="error">验证失败，请刷新页面重试。</p>
   <noscript><p class="error" data-visible="true">需要启用 JavaScript 才能通过验证。</p></noscript>
   <footer>
-    Anubis 风格验证 · 插画：<a href="https://bsky.app/profile/celphase.bsky.social" target="_blank" rel="noopener noreferrer">CELPHASE</a>
+    安全验证 · 插画：<a href="https://bsky.app/profile/celphase.bsky.social" target="_blank" rel="noopener noreferrer">CELPHASE</a>
     · <a href="/anubis/ATTRIBUTIONS.txt">MIT</a>
   </footer>
 </main>
